@@ -13,7 +13,6 @@
         .step-content.active { display: block; animation: fadeIn 0.4s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* ضبط احتواء النص */
         .wrap-text {
             word-wrap: break-word;
             overflow-wrap: break-word;
@@ -21,7 +20,6 @@
             white-space: pre-wrap;
         }
 
-        /* تنسيقات مخصصة لمؤشر الحماس */
         input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
         input[type=range]::-webkit-slider-runnable-track {
             width: 100%; height: 12px; cursor: pointer;
@@ -37,29 +35,24 @@
         .alert-pulse { animation: pulse-blue 2s infinite; }
         @keyframes pulse-blue { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
 
-        /* إعدادات الطباعة المتقدمة A4 */
         @media print {
             @page {
                 size: A4;
-                margin: 10mm 15mm !important; /* تضييق الهوامش للطباعة */
+                margin: 10mm 15mm !important;
             }
             .no-print { display: none !important; }
             .print-only { display: block !important; }
             body { background: white !important; padding: 0 !important; }
             .report-container { 
                 box-shadow: none !important; 
-                border: none !important; 
+                border: 2px solid #f1f5f9 !important; 
                 width: 100% !important; 
                 padding: 0 !important;
                 margin: 0 !important;
             }
             .avoid-break { page-break-inside: avoid; }
-            .text-slate-500 { color: #475569 !important; }
-            .bg-slate-50, .bg-green-50, .bg-red-50, .bg-blue-50, .bg-orange-50, .bg-emerald-50, .bg-purple-50 {
-                background-color: transparent !important;
-                border: 1px solid #e2e8f0 !important;
-            }
-            h1, h2, h3, h4 { color: black !important; }
+            .bg-slate-900 { background-color: #f8fafc !important; color: black !important; border: 1px solid #e2e8f0 !important; }
+            .text-white { color: black !important; }
         }
     </style>
 </head>
@@ -69,19 +62,19 @@
     <header class="bg-white shadow-md sticky top-0 z-50 no-print border-b-2 border-blue-600">
         <div class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap justify-between items-center gap-4">
             <div class="flex items-center gap-3">
-                <div class="bg-blue-700 text-white p-2.5 rounded-xl">
-                    <i class="fas fa-file-signature text-xl"></i>
+                <div class="bg-blue-700 text-white p-2.5 rounded-xl shadow-lg">
+                    <i class="fas fa-file-contract text-xl"></i>
                 </div>
-                <h1 class="text-xl font-black text-blue-900">خطة التطوير الفردية IDP</h1>
+                <h1 class="text-xl font-black text-blue-900 tracking-tighter">خطة التطوير الفردية IDP</h1>
             </div>
             
             <div class="flex items-center gap-4">
-                <div class="flex items-center gap-2 bg-red-50 px-4 py-2 rounded-full border border-red-100">
-                    <i class="fas fa-clock text-red-600 animate-pulse"></i>
+                <div class="flex items-center gap-2 bg-red-50 px-4 py-2 rounded-full border border-red-100 shadow-inner">
+                    <i class="fas fa-stopwatch text-red-600 animate-pulse"></i>
                     <span id="timer" class="font-mono font-bold text-red-700">15:00</span>
                 </div>
-                <div onclick="window.open('https://x.com/mohdasiri99', '_blank')" class="border-2 border-blue-400 px-4 py-2 rounded-xl flex items-center gap-2 cursor-pointer hover:bg-blue-50 transition-colors">
-                    <i class="fab fa-x-twitter text-blue-500"></i>
+                <div onclick="window.open('https://x.com/mohdasiri99', '_blank')" class="bg-white border-2 border-blue-400 px-4 py-2 rounded-xl flex items-center gap-2 cursor-pointer hover:bg-blue-50 transition-all shadow-sm group">
+                    <i class="fab fa-x-twitter text-blue-500 group-hover:scale-110 transition-transform"></i>
                     <span class="font-bold text-slate-700" dir="ltr">@mohdasiri99</span>
                 </div>
             </div>
@@ -91,21 +84,23 @@
     <main class="max-w-4xl mx-auto px-4 pt-10">
         
         <form id="idpWizard">
-            <!-- Step 1: User & Enthusiasm -->
+            <!-- الخطوة 1: البيانات والحماس -->
             <div class="step-content active" id="step1" data-bg="bg-slate-50">
-                <div class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-xl border-t-8 border-blue-600">
+                <div class="bg-white p-8 md:p-12 rounded-[3rem] shadow-2xl border-t-8 border-blue-600">
                     <h2 class="text-2xl font-black text-blue-900 mb-8 border-b pb-4">مرحباً بك في رحلة التغيير</h2>
                     <div class="space-y-10">
                         <div>
                             <label class="block text-lg font-bold text-slate-700 mb-4">الاسم الكامل للمستفيد:</label>
-                            <input type="text" name="user_name" id="main_user_name" required class="w-full p-4 rounded-xl border-2 border-slate-100 focus:border-blue-500 outline-none text-xl transition-all" placeholder="ادخل اسمك هنا...">
+                            <input type="text" name="user_name" id="main_user_name" required class="w-full p-4 rounded-2xl border-2 border-slate-100 focus:border-blue-500 outline-none text-xl transition-all shadow-sm" placeholder="اكتب اسمك الثلاثي لتوثيق الخطة...">
                         </div>
                         
                         <div class="relative">
-                            <label class="block text-lg font-bold text-slate-700 mb-2">قياس مستوى الحماس والرغبة (1-10):</label>
-                            <div class="bg-blue-50 border-r-4 border-blue-500 p-3 rounded-xl mb-6 flex items-center gap-3 alert-pulse">
-                                <i class="fas fa-info-circle text-blue-600"></i>
-                                <p class="text-blue-800 text-sm font-bold italic">تنبيه: فضلاً حرك الدائرة البيضاء لتحديد مستوى حماسك الحقيقي الآن.</p>
+                            <label class="block text-lg font-bold text-slate-700 mb-2 flex items-center gap-2">
+                                <i class="fas fa-chart-line text-blue-600"></i> قياس مستوى الحماس والرغبة (1-10):
+                            </label>
+                            <div class="bg-blue-50 border-r-4 border-blue-600 p-4 rounded-2xl mb-6 flex items-center gap-4 alert-pulse shadow-sm">
+                                <i class="fas fa-mouse-pointer text-blue-600 text-xl animate-bounce"></i>
+                                <p class="text-blue-900 text-sm font-bold">تنبيه هام: فضلاً حرك الدائرة البيضاء يميناً أو يساراً لتحديد مستوى حماسك ورغبتك الحقيقية الآن لإكمال الخطة.</p>
                             </div>
 
                             <div class="flex justify-between text-xs font-black mb-3 px-1">
@@ -115,226 +110,231 @@
                             </div>
                             <input type="range" name="enthusiasm" min="1" max="10" value="5" id="enthusiasmSlider" oninput="updateEnthusiasm(this.value)">
                             <div class="text-center mt-6">
-                                <span id="enthusiasmVal" class="inline-block px-10 py-4 bg-slate-50 rounded-2xl font-black text-4xl shadow-inner border transition-colors">5</span>
+                                <span id="enthusiasmVal" class="inline-block px-12 py-5 bg-white rounded-3xl font-black text-5xl shadow-xl border-2 border-slate-50 transition-all">5</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Step 2: SWOT Analysis -->
+            <!-- الخطوة 2: تحليل SWOT -->
             <div class="step-content" id="step2" data-bg="bg-amber-50">
-                <div class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-xl border-t-8 border-amber-500">
+                <div class="bg-white p-8 md:p-12 rounded-[3rem] shadow-2xl border-t-8 border-amber-500">
                     <h2 class="text-2xl font-black text-amber-800 mb-6 border-b pb-4">أولاً: تحليل سوات (SWOT)</h2>
-                    <div class="space-y-4">
-                        <div class="bg-green-50 p-5 rounded-2xl border-r-8 border-green-500">
-                            <h4 class="font-bold text-green-800 mb-2 italic">نقاط القوة (Strengths)</h4>
-                            <textarea name="swot_s" class="w-full p-3 rounded-lg border-0 bg-white outline-none focus:ring-2 focus:ring-green-300" rows="3" placeholder="ما هي مهاراتك ومواردك؟"></textarea>
+                    <div class="space-y-5">
+                        <div class="bg-green-50 p-6 rounded-2xl border-r-8 border-green-500">
+                            <h4 class="font-bold text-green-900 mb-3 flex items-center gap-2"><i class="fas fa-plus-circle"></i> نقاط القوة (Strengths)</h4>
+                            <textarea name="swot_s" class="w-full p-4 rounded-xl border-0 bg-white shadow-sm outline-none focus:ring-2 focus:ring-green-400" rows="2" placeholder="ما الذي تمتاز به؟"></textarea>
                         </div>
-                        <div class="bg-red-50 p-5 rounded-2xl border-r-8 border-red-500">
-                            <h4 class="font-bold text-red-800 mb-2 italic">نقاط الضعف (Weaknesses)</h4>
-                            <textarea name="swot_w" class="w-full p-3 rounded-lg border-0 bg-white outline-none focus:ring-2 focus:ring-red-300" rows="3" placeholder="ما هي الفجوات التي تحتاج تحسين؟"></textarea>
+                        <div class="bg-red-50 p-6 rounded-2xl border-r-8 border-red-500">
+                            <h4 class="font-bold text-red-900 mb-3 flex items-center gap-2"><i class="fas fa-minus-circle"></i> نقاط الضعف (Weaknesses)</h4>
+                            <textarea name="swot_w" class="w-full p-4 rounded-xl border-0 bg-white shadow-sm outline-none focus:ring-2 focus:ring-red-400" rows="2" placeholder="ما الذي يحتاج لتحسين؟"></textarea>
                         </div>
-                        <div class="bg-blue-50 p-5 rounded-2xl border-r-8 border-blue-500">
-                            <h4 class="font-bold text-blue-800 mb-2 italic">الفرص (Opportunities)</h4>
-                            <textarea name="swot_o" class="w-full p-3 rounded-lg border-0 bg-white outline-none focus:ring-2 focus:ring-blue-300" rows="3" placeholder="ما هي الفرص المهنية المتاحة؟"></textarea>
+                        <div class="bg-blue-50 p-6 rounded-2xl border-r-8 border-blue-500">
+                            <h4 class="font-bold text-blue-900 mb-3 flex items-center gap-2"><i class="fas fa-lightbulb"></i> الفرص (Opportunities)</h4>
+                            <textarea name="swot_o" class="w-full p-4 rounded-xl border-0 bg-white shadow-sm outline-none focus:ring-2 focus:ring-blue-400" rows="2" placeholder="فرص في عملك؟"></textarea>
                         </div>
-                        <div class="bg-orange-50 p-5 rounded-2xl border-r-8 border-orange-500">
-                            <h4 class="font-bold text-orange-800 mb-2 italic">التهديدات (Threats)</h4>
-                            <textarea name="swot_t" class="w-full p-3 rounded-lg border-0 bg-white outline-none focus:ring-2 focus:ring-orange-300" rows="3" placeholder="ما هي العوائق الخارجية؟"></textarea>
+                        <div class="bg-orange-50 p-6 rounded-2xl border-r-8 border-orange-500">
+                            <h4 class="font-bold text-orange-900 mb-3 flex items-center gap-2"><i class="fas fa-shield-halved"></i> التهديدات (Threats)</h4>
+                            <textarea name="swot_t" class="w-full p-4 rounded-xl border-0 bg-white shadow-sm outline-none focus:ring-2 focus:ring-orange-400" rows="2" placeholder="تحديات خارجية؟"></textarea>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Step 3: SMART Goals -->
+            <!-- الخطوة 3: SMART -->
             <div class="step-content" id="step3" data-bg="bg-emerald-50">
-                <div class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-xl border-t-8 border-emerald-600">
-                    <h2 class="text-2xl font-black text-emerald-800 mb-8 border-b pb-4 text-center">ثانياً: صياغة الهدف الذكي (SMART)</h2>
+                <div class="bg-white p-8 md:p-12 rounded-[3rem] shadow-2xl border-t-8 border-emerald-600">
+                    <h2 class="text-2xl font-black text-emerald-800 mb-8 border-b pb-4 text-center">ثانياً: الأهداف الذكية (SMART)</h2>
                     <div class="space-y-4">
-                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 flex items-center gap-4">
-                            <span class="w-12 h-12 bg-emerald-600 text-white flex items-center justify-center rounded-xl font-black text-xl">S</span>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100 flex items-center gap-5 focus-within:border-emerald-500 transition-all">
+                            <span class="w-14 h-14 bg-emerald-600 text-white flex items-center justify-center rounded-2xl font-black text-2xl shadow-md">S</span>
                             <div class="flex-grow min-w-0">
-                                <label class="block text-xs font-bold text-slate-500">محدد (Specific)</label>
-                                <input type="text" name="smart_s" class="w-full bg-transparent border-b border-slate-200 outline-none focus:border-emerald-600 font-bold" placeholder="ماذا تريد تحقيقه بالضبط؟">
+                                <label class="block text-xs font-black text-slate-400 uppercase tracking-tighter">محدد (Specific)</label>
+                                <input type="text" name="smart_s" class="w-full bg-transparent border-b-2 border-slate-200 outline-none focus:border-emerald-600 font-bold pb-1 text-lg" placeholder="ماذا تريد تحقيقه بالضبط؟">
                             </div>
                         </div>
-                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 flex items-center gap-4">
-                            <span class="w-12 h-12 bg-emerald-600 text-white flex items-center justify-center rounded-xl font-black text-xl">M</span>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100 flex items-center gap-5 focus-within:border-emerald-500 transition-all">
+                            <span class="w-14 h-14 bg-emerald-600 text-white flex items-center justify-center rounded-2xl font-black text-2xl shadow-md">M</span>
                             <div class="flex-grow min-w-0">
-                                <label class="block text-xs font-bold text-slate-500">قابل للقياس (Measurable)</label>
-                                <input type="text" name="smart_m" class="w-full bg-transparent border-b border-slate-200 outline-none focus:border-emerald-600 font-bold" placeholder="كيف سنعرف أننا نجحنا؟">
+                                <label class="block text-xs font-black text-slate-400 uppercase tracking-tighter">قابل للقياس (Measurable)</label>
+                                <input type="text" name="smart_m" class="w-full bg-transparent border-b-2 border-slate-200 outline-none focus:border-emerald-600 font-bold pb-1 text-lg" placeholder="كيف سنقيس النجاح؟">
                             </div>
                         </div>
-                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 flex items-center gap-4">
-                            <span class="w-12 h-12 bg-emerald-600 text-white flex items-center justify-center rounded-xl font-black text-xl">A</span>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100 flex items-center gap-5 focus-within:border-emerald-500 transition-all">
+                            <span class="w-14 h-14 bg-emerald-600 text-white flex items-center justify-center rounded-2xl font-black text-2xl shadow-md">A</span>
                             <div class="flex-grow min-w-0">
-                                <label class="block text-xs font-bold text-slate-500">قابل للتحقيق (Achievable)</label>
-                                <input type="text" name="smart_a" class="w-full bg-transparent border-b border-slate-200 outline-none focus:border-emerald-600 font-bold" placeholder="هل تملك الأدوات اللازمة؟">
+                                <label class="block text-xs font-black text-slate-400 uppercase tracking-tighter">قابل للتحقيق (Achievable)</label>
+                                <input type="text" name="smart_a" class="w-full bg-transparent border-b-2 border-slate-200 outline-none focus:border-emerald-600 font-bold pb-1 text-lg" placeholder="هل تملك الموارد الكافية؟">
                             </div>
                         </div>
-                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 flex items-center gap-4">
-                            <span class="w-12 h-12 bg-emerald-600 text-white flex items-center justify-center rounded-xl font-black text-xl">R</span>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100 flex items-center gap-5 focus-within:border-emerald-500 transition-all">
+                            <span class="w-14 h-14 bg-emerald-600 text-white flex items-center justify-center rounded-2xl font-black text-2xl shadow-md">R</span>
                             <div class="flex-grow min-w-0">
-                                <label class="block text-xs font-bold text-slate-500">ذو صلة (Relevant)</label>
-                                <input type="text" name="smart_r" class="w-full bg-transparent border-b border-slate-200 outline-none focus:border-emerald-600 font-bold" placeholder="لماذا هذا الهدف مهم؟">
+                                <label class="block text-xs font-black text-slate-400 uppercase tracking-tighter">ذو صلة (Relevant)</label>
+                                <input type="text" name="smart_r" class="w-full bg-transparent border-b-2 border-slate-200 outline-none focus:border-emerald-600 font-bold pb-1 text-lg" placeholder="لماذا هذا الهدف يخدم مستقبلك؟">
                             </div>
                         </div>
-                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 flex items-center gap-4">
-                            <span class="w-12 h-12 bg-emerald-600 text-white flex items-center justify-center rounded-xl font-black text-xl">T</span>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100 flex items-center gap-5 focus-within:border-emerald-500 transition-all">
+                            <span class="w-14 h-14 bg-emerald-600 text-white flex items-center justify-center rounded-2xl font-black text-2xl shadow-md">T</span>
                             <div class="flex-grow min-w-0">
-                                <label class="block text-xs font-bold text-slate-500">محدد بزمن (Time-bound)</label>
-                                <input type="text" name="smart_t" class="w-full bg-transparent border-b border-slate-200 outline-none focus:border-emerald-600 font-bold" placeholder="متى موعد الإنجاز؟">
+                                <label class="block text-xs font-black text-slate-400 uppercase tracking-tighter">محدد بزمن (Time-bound)</label>
+                                <input type="text" name="smart_t" class="w-full bg-transparent border-b-2 border-slate-200 outline-none focus:border-emerald-600 font-bold pb-1 text-lg" placeholder="ما هو الموعد النهائي؟">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Step 4: 70-20-10 -->
+            <!-- الخطوة 4: 70-20-10 -->
             <div class="step-content" id="step4" data-bg="bg-purple-50">
-                <div class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-xl border-t-8 border-purple-600">
+                <div class="bg-white p-8 md:p-12 rounded-[3rem] shadow-2xl border-t-8 border-purple-600">
                     <h2 class="text-2xl font-black text-purple-800 mb-8 border-b pb-4">ثالثاً: خارطة التطوير (70-20-10)</h2>
                     <div class="space-y-6">
-                        <div class="bg-purple-50 p-6 rounded-2xl border-r-8 border-purple-600 shadow-sm">
-                            <h4 class="font-bold text-purple-900 mb-3 flex justify-between">
-                                <span>70% التطبيق أو الممارسة العملية <span class="text-red-600 font-black">(الأهم)</span></span>
-                                <i class="fas fa-screwdriver-wrench"></i>
+                        <div class="bg-purple-50 p-8 rounded-3xl border-r-8 border-purple-600 shadow-sm transition-transform hover:scale-[1.01]">
+                            <h4 class="text-xl font-black text-purple-900 mb-4 flex justify-between items-center">
+                                <span>70% التطبيق أو الممارسة العملية <span class="text-red-600 font-black mr-2">(الأهم)</span></span>
+                                <i class="fas fa-hammer text-purple-300"></i>
                             </h4>
-                            <textarea name="model_70" class="w-full p-3 rounded-xl border-0 bg-white outline-none focus:ring-2 focus:ring-purple-400" rows="3" placeholder="حدد المشاريع أو المهام الميدانية..."></textarea>
+                            <textarea name="model_70" class="w-full p-4 rounded-xl border-2 border-purple-100 outline-none focus:border-purple-600 shadow-inner text-lg" rows="3" placeholder="مشاريع مهنية، مهام جديدة..."></textarea>
                         </div>
-                        <div class="bg-blue-50 p-6 rounded-2xl border-r-8 border-blue-600 shadow-sm">
-                            <h4 class="font-bold text-blue-900 mb-3 flex justify-between">
+                        <div class="bg-blue-50 p-8 rounded-3xl border-r-8 border-blue-600 shadow-sm transition-transform hover:scale-[1.01]">
+                            <h4 class="text-xl font-black text-blue-900 mb-4 flex justify-between items-center">
                                 <span>20% كوتشينج وتوجيه (تعلم اجتماعي)</span>
-                                <i class="fas fa-users-viewfinder"></i>
+                                <i class="fas fa-users-viewfinder text-blue-300"></i>
                             </h4>
-                            <textarea name="model_20" class="w-full p-3 rounded-xl border-0 bg-white outline-none focus:ring-2 focus:ring-blue-400" rows="3" placeholder="من هو الموجه أو الكوتش؟"></textarea>
+                            <textarea name="model_20" class="w-full p-4 rounded-xl border-2 border-blue-100 outline-none focus:border-blue-600 shadow-inner text-lg" rows="3" placeholder="من هو موجهك أو الكوتش؟"></textarea>
                         </div>
-                        <div class="bg-slate-100 p-6 rounded-2xl border-r-8 border-slate-500 shadow-sm">
-                            <h4 class="font-bold text-slate-900 mb-3 flex justify-between">
+                        <div class="bg-slate-50 p-8 rounded-3xl border-r-8 border-slate-500 shadow-sm transition-transform hover:scale-[1.01]">
+                            <h4 class="text-xl font-black text-slate-900 mb-4 flex justify-between items-center">
                                 <span>10% تدريب رسمي وتعليم</span>
-                                <i class="fas fa-book-open"></i>
+                                <i class="fas fa-book-open text-slate-300"></i>
                             </h4>
-                            <textarea name="model_10" class="w-full p-3 rounded-xl border-0 bg-white outline-none focus:ring-2 focus:ring-slate-400" rows="3" placeholder="كتب، دورات، شهادات..."></textarea>
+                            <textarea name="model_10" class="w-full p-4 rounded-xl border-2 border-slate-200 outline-none focus:border-slate-600 shadow-inner text-lg" rows="3" placeholder="كتب، دورات، شهادات..."></textarea>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Nav Buttons -->
-            <div class="mt-8 flex justify-between items-center no-print">
-                <button type="button" id="prevBtn" onclick="changeStep(-1)" class="invisible px-10 py-4 font-bold text-slate-400 hover:text-slate-800 transition-all">السابق</button>
-                <button type="button" id="nextBtn" onclick="changeStep(1)" class="bg-blue-700 text-white px-12 py-4 rounded-2xl font-black text-xl shadow-lg hover:bg-blue-800 transition-all">التالي</button>
+            <!-- Buttons -->
+            <div class="mt-12 flex justify-between items-center no-print px-4">
+                <button type="button" id="prevBtn" onclick="changeStep(-1)" class="invisible px-12 py-5 rounded-2xl font-bold text-slate-400 hover:text-slate-900 transition-all border-2 border-transparent hover:border-slate-200">السابق</button>
+                <button type="button" id="nextBtn" onclick="changeStep(1)" class="bg-blue-700 text-white px-16 py-5 rounded-2xl font-black text-2xl shadow-xl hover:bg-blue-800 transition-all flex items-center gap-3">
+                    <span>التالي</span>
+                    <i class="fas fa-chevron-left text-sm"></i>
+                </button>
             </div>
         </form>
 
-        <!-- FINAL REPORT FOR PRINT -->
+        <!-- Final IDP Report -->
         <div id="finalReport" class="hidden">
-            <div class="report-container bg-white p-8 md:p-12 rounded-[3rem] shadow-2xl border-t-[15px] border-blue-900 idp-card-print overflow-hidden">
+            <div class="report-container bg-white p-8 md:p-14 rounded-[4rem] shadow-2xl border-t-[20px] border-blue-900 idp-card-print overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-blue-50/50 to-transparent -z-10"></div>
                 
-                <div class="text-center mb-10 border-b-4 border-double border-slate-100 pb-8 avoid-break">
-                    <h1 class="text-4xl font-black text-blue-900 mb-2">خطة التطوير الفردية IDP</h1>
-                    <p class="text-lg text-slate-600 font-bold italic">إعداد وتصميم الكوتش محمد علي عسيري</p>
+                <div class="text-center mb-12 border-b-4 border-double border-slate-200 pb-10 avoid-break">
+                    <h1 class="text-5xl font-black text-blue-900 mb-4 tracking-tighter">خطة التطوير الفردية IDP</h1>
+                    <p class="text-2xl text-slate-600 font-extrabold italic">إعداد وتصميم الكوتش محمد علي عسيري</p>
                 </div>
 
-                <div class="space-y-8">
-                    <!-- Section 1: User & Enthusiasm -->
-                    <div class="bg-slate-50 p-6 rounded-[2rem] border-2 border-white shadow-inner flex flex-wrap justify-between items-center gap-6 avoid-break">
+                <div class="space-y-12">
+                    <!-- User & Enthusiasm -->
+                    <div class="bg-slate-50 p-8 rounded-[3rem] border-2 border-white shadow-inner flex flex-wrap justify-between items-center gap-10 avoid-break">
                         <div class="min-w-0 flex-grow">
-                            <span class="text-xs font-black text-blue-500 uppercase tracking-widest block mb-1">المستفيد</span>
-                            <h3 id="rep-name" class="text-2xl font-black text-slate-900 wrap-text"></h3>
+                            <span class="text-xs font-black text-blue-600 uppercase tracking-widest block mb-1">المستفيد من الخطة</span>
+                            <h3 id="rep-name" class="text-3xl font-black text-slate-900 wrap-text"></h3>
                         </div>
-                        <div class="w-48">
-                            <div class="flex justify-between items-end mb-1">
-                                <span class="text-xs font-black text-blue-500 uppercase tracking-widest">مستوى الحماس</span>
-                                <span id="rep-enthusiasm-text" class="font-black text-sm"></span>
+                        <div class="w-full md:w-64">
+                            <div class="flex justify-between items-end mb-2">
+                                <span class="text-xs font-black text-blue-600 uppercase tracking-widest">مستوى الرغبة</span>
+                                <span id="rep-enthusiasm-text" class="font-black text-xl text-slate-800"></span>
                             </div>
-                            <div class="h-4 w-full bg-white rounded-full p-0.5 border shadow-inner">
-                                <div id="rep-enthusiasm-bar" class="h-full rounded-full transition-all duration-1000"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Section 2: SWOT Horizontal (Print optimized) -->
-                    <div class="avoid-break">
-                        <h3 class="text-xl font-black text-slate-900 mb-4 border-r-4 border-blue-700 pr-3">تحليل الواقع (SWOT)</h3>
-                        <div class="space-y-3">
-                            <div class="bg-green-50 p-4 rounded-2xl border-r-4 border-green-500">
-                                <b class="text-green-900 block text-sm">نقاط القوة:</b>
-                                <p id="rep-s" class="text-slate-700 text-sm leading-relaxed wrap-text font-medium"></p>
-                            </div>
-                            <div class="bg-red-50 p-4 rounded-2xl border-r-4 border-red-500">
-                                <b class="text-red-900 block text-sm">نقاط الضعف:</b>
-                                <p id="rep-w" class="text-slate-700 text-sm leading-relaxed wrap-text font-medium"></p>
-                            </div>
-                            <div class="bg-blue-50 p-4 rounded-2xl border-r-4 border-blue-500">
-                                <b class="text-blue-900 block text-sm">الفرص المتاحة:</b>
-                                <p id="rep-o" class="text-slate-700 text-sm leading-relaxed wrap-text font-medium"></p>
-                            </div>
-                            <div class="bg-orange-50 p-4 rounded-2xl border-r-4 border-orange-500">
-                                <b class="text-orange-900 block text-sm">التهديدات المتوقعة:</b>
-                                <p id="rep-t" class="text-slate-700 text-sm leading-relaxed wrap-text font-medium"></p>
+                            <div class="h-6 w-full bg-white rounded-full p-1 border shadow-inner overflow-hidden">
+                                <div id="rep-enthusiasm-bar" class="h-full rounded-full transition-all duration-1500 shadow-md"></div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Section 3: SMART Grid -->
-                    <div class="avoid-break bg-emerald-50 p-6 rounded-[2.5rem] border-2 border-emerald-100">
-                        <h3 class="text-xl font-black text-emerald-900 mb-6 text-center underline decoration-4 decoration-emerald-200">الهدف الاستراتيجي الذكي (SMART)</h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="bg-white p-4 rounded-xl border border-emerald-50 h-auto">
-                                <b class="text-emerald-700 block text-xs">محدد:</b>
-                                <span id="res-smart-s" class="text-sm font-bold wrap-text block mt-1"></span>
+                    <!-- SWOT Horizontal Stacked -->
+                    <div class="avoid-break space-y-6">
+                        <h3 class="text-2xl font-black text-slate-900 mb-4 border-r-8 border-blue-700 pr-4">تحليل الواقع المهني (SWOT)</h3>
+                        <div class="grid gap-4">
+                            <div class="bg-green-50 p-6 rounded-3xl border-r-8 border-green-500 h-auto">
+                                <b class="text-green-900 block mb-2 text-xl italic underline decoration-2 underline-offset-4 decoration-green-200">نقاط القوة:</b>
+                                <p id="rep-s" class="text-slate-800 leading-relaxed font-bold text-lg wrap-text"></p>
                             </div>
-                            <div class="bg-white p-4 rounded-xl border border-emerald-50 h-auto">
-                                <b class="text-emerald-700 block text-xs">مؤشر القياس:</b>
-                                <span id="res-smart-m" class="text-sm font-bold wrap-text block mt-1"></span>
+                            <div class="bg-red-50 p-6 rounded-3xl border-r-8 border-red-500 h-auto">
+                                <b class="text-red-900 block mb-2 text-xl italic underline decoration-2 underline-offset-4 decoration-red-200">نقاط الضعف:</b>
+                                <p id="rep-w" class="text-slate-800 leading-relaxed font-bold text-lg wrap-text"></p>
                             </div>
-                            <div class="bg-white p-4 rounded-xl border border-emerald-50 h-auto">
-                                <b class="text-emerald-700 block text-xs">قابل للإنجاز:</b>
-                                <span id="res-smart-a" class="text-sm font-bold wrap-text block mt-1"></span>
+                            <div class="bg-blue-50 p-6 rounded-3xl border-r-8 border-blue-500 h-auto">
+                                <b class="text-blue-900 block mb-2 text-xl italic underline decoration-2 underline-offset-4 decoration-blue-200">الفرص المتاحة:</b>
+                                <p id="rep-o" class="text-slate-800 leading-relaxed font-bold text-lg wrap-text"></p>
                             </div>
-                            <div class="bg-white p-4 rounded-xl border border-emerald-50 h-auto">
-                                <b class="text-emerald-700 block text-xs">صلة الهدف:</b>
-                                <span id="res-smart-r" class="text-sm font-bold wrap-text block mt-1"></span>
-                            </div>
-                            <div class="bg-white p-4 rounded-xl border border-emerald-50 h-auto sm:col-span-2">
-                                <b class="text-emerald-700 block text-xs">الموعد الزمني:</b>
-                                <span id="res-smart-t" class="text-sm font-bold wrap-text block mt-1"></span>
+                            <div class="bg-orange-50 p-6 rounded-3xl border-r-8 border-orange-500 h-auto">
+                                <b class="text-orange-900 block mb-2 text-xl italic underline decoration-2 underline-offset-4 decoration-orange-200">التهديدات المتوقعة:</b>
+                                <p id="rep-t" class="text-slate-800 leading-relaxed font-bold text-lg wrap-text"></p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Section 4: 70-20-10 -->
-                    <div class="avoid-break bg-slate-900 text-white p-8 rounded-[3rem]">
-                        <h3 class="text-xl font-black mb-6 flex items-center gap-2 italic">
-                            <i class="fas fa-rocket text-blue-400"></i> خارطة التنفيذ (70-20-10)
+                    <!-- SMART Goals Results -->
+                    <div class="avoid-break bg-emerald-50 p-10 rounded-[4rem] border-4 border-emerald-100 shadow-sm relative overflow-hidden">
+                        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-100 rounded-full opacity-30"></div>
+                        <h3 class="text-2xl font-black text-emerald-900 mb-10 text-center underline decoration-8 decoration-emerald-200">الهدف الاستراتيجي الذكي (SMART)</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+                            <div class="bg-white p-5 rounded-3xl shadow-sm border border-emerald-50 h-auto">
+                                <b class="text-emerald-700 block text-xs mb-2">محدد:</b>
+                                <span id="res-smart-s" class="font-black text-lg text-slate-800 wrap-text block"></span>
+                            </div>
+                            <div class="bg-white p-5 rounded-3xl shadow-sm border border-emerald-50 h-auto">
+                                <b class="text-emerald-700 block text-xs mb-2">مؤشر القياس:</b>
+                                <span id="res-smart-m" class="font-black text-lg text-slate-800 wrap-text block"></span>
+                            </div>
+                            <div class="bg-white p-5 rounded-3xl shadow-sm border border-emerald-50 h-auto">
+                                <b class="text-emerald-700 block text-xs mb-2">إمكانية التحقيق:</b>
+                                <span id="res-smart-a" class="font-black text-lg text-slate-800 wrap-text block"></span>
+                            </div>
+                            <div class="bg-white p-5 rounded-3xl shadow-sm border border-emerald-50 h-auto">
+                                <b class="text-emerald-700 block text-xs mb-2">صلة الهدف:</b>
+                                <span id="res-smart-r" class="font-black text-lg text-slate-800 wrap-text block"></span>
+                            </div>
+                            <div class="bg-white p-5 rounded-3xl shadow-sm border border-emerald-50 h-auto md:col-span-2">
+                                <b class="text-emerald-700 block text-xs mb-2">المدى الزمني للإنجاز:</b>
+                                <span id="res-smart-t" class="font-black text-lg text-slate-800 wrap-text block"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: 70-20-10 (Now Light Background for Print) -->
+                    <div class="avoid-break bg-purple-50 p-10 md:p-14 rounded-[4.5rem] shadow-sm border-2 border-purple-100">
+                        <h3 class="text-3xl font-black text-purple-900 mb-10 border-b border-purple-200 pb-6 flex items-center gap-3">
+                            <i class="fas fa-route text-purple-600"></i> خارطة التنفيذ (70-20-10)
                         </h3>
-                        <div class="space-y-4">
-                            <div class="bg-white/5 p-4 rounded-2xl border border-white/10">
-                                <b class="text-purple-300 block text-sm mb-1">70% تطبيق ممارسة (الأهم):</b>
-                                <p id="rep-70" class="text-sm leading-relaxed wrap-text"></p>
+                        <div class="space-y-8">
+                            <div class="bg-white p-6 rounded-[2.5rem] border-r-8 border-purple-600 shadow-sm transition-transform hover:scale-[1.01]">
+                                <b class="text-purple-800 block mb-2 text-xl">70% تطبيق ممارسة (الأهم):</b>
+                                <p id="rep-70" class="text-xl leading-relaxed text-slate-800 font-bold wrap-text"></p>
                             </div>
-                            <div class="bg-white/5 p-4 rounded-2xl border border-white/10">
-                                <b class="text-blue-300 block text-sm mb-1">20% كوتشينج وتوجيه:</b>
-                                <p id="rep-20" class="text-sm leading-relaxed wrap-text"></p>
+                            <div class="bg-white p-6 rounded-[2.5rem] border-r-8 border-blue-600 shadow-sm transition-transform hover:scale-[1.01]">
+                                <b class="text-blue-800 block mb-2 text-xl">20% كوتشينج وتوجيه:</b>
+                                <p id="rep-20" class="text-xl leading-relaxed text-slate-800 font-bold wrap-text"></p>
                             </div>
-                            <div class="bg-white/5 p-4 rounded-2xl border border-white/10">
-                                <b class="text-slate-400 block text-sm mb-1">10% تدريب وتعليم:</b>
-                                <p id="rep-10" class="text-sm leading-relaxed wrap-text"></p>
+                            <div class="bg-white p-6 rounded-[2.5rem] border-r-8 border-slate-600 shadow-sm transition-transform hover:scale-[1.01]">
+                                <b class="text-slate-800 block mb-2 text-xl">10% تعلم وتعليم رسمي:</b>
+                                <p id="rep-10" class="text-xl leading-relaxed text-slate-800 font-bold wrap-text"></p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Footer Printing -->
-                <div class="mt-12 pt-8 border-t-2 border-slate-100 flex flex-col items-center gap-6 no-print">
-                    <button onclick="window.print()" class="bg-slate-900 text-white px-16 py-5 rounded-2xl font-black text-2xl hover:scale-105 transition-all shadow-xl">
-                        <i class="fas fa-file-pdf ml-3"></i> حفظ كملف PDF للطباعة
+                <!-- Footer Printing Section -->
+                <div class="mt-20 pt-10 border-t-2 border-slate-100 flex flex-col items-center gap-8 no-print">
+                    <button onclick="window.print()" class="bg-slate-900 text-white px-20 py-6 rounded-[2.5rem] font-black text-3xl hover:scale-105 transition-all shadow-2xl flex items-center gap-4 group">
+                        <i class="fas fa-file-pdf group-hover:animate-bounce"></i> حفظ الخطة (PDF) للطباعة
                     </button>
-                    <div class="flex items-center gap-4">
-                        <p class="text-slate-500 font-black">للمزيد من الدعم تواصل مع الكوتش:</p>
-                        <a href="https://x.com/mohdasiri99" target="_blank" class="bg-blue-600 text-white px-6 py-2 rounded-full font-black text-sm">@mohdasiri99</a>
+                    <div class="flex items-center gap-6">
+                        <p class="text-slate-500 font-black">للمتابعة والاستشارة تواصل مع الكوتش:</p>
+                        <a href="https://x.com/mohdasiri99" target="_blank" class="bg-blue-600 text-white px-10 py-3 rounded-full font-black text-xl shadow-lg transform hover:-rotate-2 transition-all">@mohdasiri99</a>
                     </div>
                 </div>
             </div>
@@ -342,14 +342,15 @@
     </main>
 
     <!-- Global Footer -->
-    <footer class="py-12 text-center text-slate-400 text-sm no-print">
-        <div class="max-w-xs mx-auto h-px bg-slate-200 mb-6"></div>
-        <p class="font-bold text-slate-600 mb-2">
+    <footer class="py-16 text-center text-slate-400 text-sm no-print">
+        <div class="max-w-md mx-auto h-px bg-slate-200 mb-10"></div>
+        <p class="font-black text-xl text-slate-600 mb-3">
             جميع الحقوق محفوظة لـ 
-            <a href="https://x.com/mohdasiri99" target="_blank" class="text-blue-500 underline decoration-2 underline-offset-4">
+            <a href="https://x.com/mohdasiri99" target="_blank" class="text-blue-600 hover:text-blue-800 transition-colors underline decoration-blue-200 decoration-4 underline-offset-8">
                 الكوتش محمد علي عسيري
             </a>
         </p>
+        <p class="opacity-40 font-mono tracking-[0.2em] uppercase italic text-xs">Innovation in Professional Planning &copy; 2024</p>
     </footer>
 
     <script>
@@ -363,7 +364,10 @@
                 const min = Math.floor(timeLeft / 60);
                 const sec = timeLeft % 60;
                 document.getElementById('timer').innerText = `${min.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`;
-                if (timeLeft <= 0) clearInterval(timerInterval);
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById('timer').classList.add('animate-ping');
+                }
                 timeLeft--;
             }, 1000);
         }
@@ -380,17 +384,20 @@
         function changeStep(n) {
             const steps = document.querySelectorAll('.step-content');
             if (currentStep === 1 && n === 1) {
-                const name = document.getElementById('main_user_name').value.trim();
-                if (!name) return;
+                const nameInp = document.getElementById('main_user_name');
+                if (!nameInp.value.trim()) {
+                    nameInp.classList.add('border-red-500');
+                    return;
+                }
             }
             steps[currentStep-1].classList.remove('active');
             currentStep += n;
             if (currentStep > totalSteps) { generateReport(); return; }
             const activeStep = steps[currentStep-1];
             activeStep.classList.add('active');
-            document.body.className = activeStep.getAttribute('data-bg') + ' min-h-screen';
+            document.body.className = activeStep.getAttribute('data-bg') + ' min-h-screen transition-colors duration-500';
             document.getElementById('prevBtn').classList.toggle('invisible', currentStep === 1);
-            document.getElementById('nextBtn').innerText = currentStep === totalSteps ? 'عرض التقرير' : 'التالي';
+            document.getElementById('nextBtn').innerText = currentStep === totalSteps ? 'عرض التقرير النهائي' : 'الخطوة التالية';
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
@@ -398,7 +405,7 @@
             const fd = new FormData(document.getElementById('idpWizard'));
             document.getElementById('idpWizard').classList.add('hidden');
             document.getElementById('finalReport').classList.remove('hidden');
-            document.body.className = 'bg-slate-200 py-10';
+            document.body.className = 'bg-slate-200 py-16';
             clearInterval(timerInterval);
 
             // Data Mapping
