@@ -4,273 +4,278 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة IDP الذكية | الكوتش محمد عسيري</title>
+    <!-- تحميل مكتبة التنسيق Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- تحميل الأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- تحميل الخطوط -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: #f0f4f8;
+            background-color: #f8fafc;
         }
         .step-content { display: none; }
-        .step-content.active { display: block; animation: fadeIn 0.5s ease-out; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .step-content.active { display: block; animation: slideIn 0.4s ease-out; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
-        .gradient-text {
-            background: linear-gradient(90deg, #1e40af, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .idp-card {
-            background: white;
-            border-radius: 2rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         @media print {
-            .no-print { display: none; }
+            .no-print { display: none !important; }
             body { background: white; }
-            .idp-card { box-shadow: none; border: 1px solid #ddd; }
+            .print-area { box-shadow: none !important; border: 2px solid #e2e8f0 !important; border-radius: 1rem !important; }
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col bg-slate-50">
 
     <!-- Header -->
-    <header class="bg-white shadow-sm py-4 px-6 no-print">
+    <header class="bg-white shadow-md py-4 px-6 no-print border-b-4 border-blue-600">
         <div class="max-w-5xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="bg-blue-600 p-2 rounded-lg text-white">
-                    <i class="fas fa-rocket text-xl"></i>
+                <div class="bg-blue-600 p-2 rounded-xl text-white shadow-lg">
+                    <i class="fas fa-graduation-cap text-2xl"></i>
                 </div>
                 <div>
-                    <h1 class="font-bold text-lg text-slate-800 leading-none">مخطط التميز المهني</h1>
-                    <span class="text-xs text-blue-600 font-bold">IDP Interactive Tool</span>
+                    <h1 class="font-black text-xl text-slate-800 tracking-tight">مُعالج خطة IDP</h1>
+                    <span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-bold uppercase">v2.0 Interactive</span>
                 </div>
             </div>
             <div class="text-left">
-                <p class="text-sm font-bold text-slate-700">الكوتش محمد علي عسيري</p>
-                <a href="https://x.com/mohdasiri99" target="_blank" class="text-xs text-blue-500 hover:underline flex items-center gap-1 justify-end">
+                <p class="text-sm font-bold text-slate-800">الكوتش محمد علي عسيري</p>
+                <a href="https://x.com/mohdasiri99" target="_blank" class="text-xs text-blue-600 hover:text-blue-800 flex items-center gap-1 justify-end font-medium">
                     @mohdasiri99 <i class="fab fa-x-twitter"></i>
                 </a>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow container mx-auto max-w-4xl p-4 md:p-8">
+    <main class="flex-grow container mx-auto max-w-4xl p-4 md:pt-12">
         
-        <!-- Welcome Screen -->
-        <div id="welcome-screen" class="text-center py-12 px-6 bg-white rounded-[3rem] shadow-xl">
-            <div class="mb-6 inline-block p-4 bg-blue-50 rounded-full">
-                <i class="fas fa-user-gear text-5xl text-blue-600"></i>
+        <!-- Welcome Section -->
+        <div id="welcome-screen" class="glass-effect p-8 md:p-16 rounded-[2.5rem] shadow-2xl text-center border border-white relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-50 rounded-full opacity-50"></div>
+            <div class="relative z-10">
+                <div class="mb-8 inline-flex items-center justify-center w-24 h-24 bg-blue-600 text-white rounded-3xl rotate-12 shadow-xl">
+                    <i class="fas fa-magic text-4xl -rotate-12"></i>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-6 leading-tight">جاهز لتصميم مستقبلك المهني؟</h2>
+                <p class="text-slate-600 mb-10 text-lg max-w-xl mx-auto leading-relaxed">
+                    أهلاً بك. سنقوم معاً ببناء خطة تطوير فردية (IDP) متكاملة. كل ما عليك هو الإجابة على الأسئلة التالية بوضوح.
+                </p>
+                <button onclick="startWizard()" class="bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold px-12 py-5 rounded-2xl transition-all transform hover:scale-105 active:scale-95 shadow-xl flex items-center gap-3 mx-auto">
+                    ابدأ الرحلة الآن <i class="fas fa-arrow-left"></i>
+                </button>
             </div>
-            <h2 class="text-3xl font-extrabold text-slate-900 mb-4">أهلاً بك في رحلة تطويرك الفردية</h2>
-            <p class="text-slate-600 mb-8 max-w-lg mx-auto leading-relaxed">
-                هذه المنصة التفاعلية ستساعدك على بناء خطة تطوير (IDP) منهجية في أقل من 5 دقائق. أجب عن الأسئلة بوضوح لتحصل على خارطة طريقك.
-            </p>
-            <button onclick="startWizard()" class="bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold px-10 py-4 rounded-2xl transition-all transform hover:scale-105 shadow-lg">
-                ابدأ تصميم خطتك الآن
-            </button>
         </div>
 
-        <!-- Wizard Steps -->
+        <!-- Wizard Logic -->
         <div id="wizard-container" class="hidden">
-            <!-- Progress Bar -->
-            <div class="mb-8 no-print">
-                <div class="flex justify-between mb-2 text-sm font-bold text-blue-600">
+            <!-- Progress Tracker -->
+            <div class="mb-8 no-print px-4">
+                <div class="flex justify-between mb-3 text-sm font-extrabold text-blue-800 uppercase tracking-widest">
                     <span id="progress-text">الخطوة 1 من 6</span>
-                    <span id="progress-percent">15%</span>
+                    <span id="progress-percent">16%</span>
                 </div>
-                <div class="w-full bg-slate-200 rounded-full h-3">
-                    <div id="progress-bar" class="bg-blue-600 h-3 rounded-full transition-all duration-500" style="width: 15%"></div>
+                <div class="w-full bg-blue-100 rounded-full h-4 p-1 shadow-inner">
+                    <div id="progress-bar" class="bg-blue-600 h-2 rounded-full transition-all duration-700 ease-in-out shadow-sm" style="width: 16%"></div>
                 </div>
             </div>
 
-            <div class="idp-card p-6 md:p-10">
-                <form id="idpForm">
-                    <!-- Step 1: Self Assessment -->
+            <div class="bg-white p-6 md:p-12 rounded-[2rem] shadow-xl border border-slate-100 relative">
+                <form id="idpForm" onsubmit="event.preventDefault();">
+                    
+                    <!-- Step 1 -->
                     <div class="step-content active" data-step="1">
-                        <div class="flex items-center gap-4 mb-6">
-                            <span class="bg-blue-100 text-blue-600 w-10 h-10 flex items-center justify-center rounded-full font-bold">1</span>
-                            <h3 class="text-2xl font-bold text-slate-800">التقييم الذاتي</h3>
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-black text-slate-900 mb-2">01. التقييم الذاتي</h3>
+                            <p class="text-slate-500">لنتعرف على نقاط القوة التي ستبني عليها نجاحك.</p>
                         </div>
                         <div class="space-y-6">
                             <div>
-                                <label class="block text-slate-700 font-bold mb-2">ما هي أهم 3 نقاط قوة تمتلكها حالياً؟</label>
-                                <textarea name="strengths" class="w-full p-4 rounded-xl border-2 border-slate-100 focus:border-blue-500 outline-none transition-all" rows="3" placeholder="مثال: القيادة، التحليل المالي، التواصل الفعال..."></textarea>
+                                <label class="block text-slate-800 font-bold mb-3 flex items-center gap-2">
+                                    <i class="fas fa-award text-blue-500"></i> ما هي أهم 3 مهارات تتميز بها حالياً؟
+                                </label>
+                                <textarea name="strengths" class="w-full p-4 rounded-2xl bg-slate-50 border-2 border-slate-100 focus:border-blue-500 focus:bg-white outline-none transition-all text-lg" rows="3" placeholder="مثال: الإقناع، التحليل، إدارة الوقت..."></textarea>
                             </div>
                             <div>
-                                <label class="block text-slate-700 font-bold mb-2">ما هو مسماك الوظيفي الحالي؟</label>
-                                <input type="text" name="current_role" class="w-full p-4 rounded-xl border-2 border-slate-100 focus:border-blue-500 outline-none transition-all" placeholder="مثال: مدير مشاريع">
+                                <label class="block text-slate-800 font-bold mb-3 flex items-center gap-2">
+                                    <i class="fas fa-briefcase text-blue-500"></i> مسمى وظيفتك الحالية؟
+                                </label>
+                                <input type="text" name="current_role" class="w-full p-4 rounded-2xl bg-slate-50 border-2 border-slate-100 focus:border-blue-500 focus:bg-white outline-none transition-all text-lg" placeholder="مثال: أخصائي موارد بشرية">
                             </div>
                         </div>
                     </div>
 
-                    <!-- Step 2: Goals -->
+                    <!-- Step 2 -->
                     <div class="step-content" data-step="2">
-                        <div class="flex items-center gap-4 mb-6">
-                            <span class="bg-indigo-100 text-indigo-600 w-10 h-10 flex items-center justify-center rounded-full font-bold">2</span>
-                            <h3 class="text-2xl font-bold text-slate-800">تحديد الأهداف</h3>
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-black text-slate-900 mb-2">02. الرؤية المستقبلية</h3>
+                            <p class="text-slate-500">أين تود أن تصل في مسارك المهني؟</p>
                         </div>
                         <div class="space-y-6">
                             <div>
-                                <label class="block text-slate-700 font-bold mb-2">أين ترى نفسك بعد سنة من الآن؟ (هدف ذكي)</label>
-                                <textarea name="goal_short" class="w-full p-4 rounded-xl border-2 border-slate-100 focus:border-indigo-500 outline-none transition-all" rows="3" placeholder="مثال: الحصول على شهادة PMP والبدء في إدارة مشاريع دولية"></textarea>
+                                <label class="block text-slate-800 font-bold mb-3">ما هو هدفك المهني الكبير للسنة القادمة؟</label>
+                                <textarea name="goal_short" class="w-full p-4 rounded-2xl bg-slate-50 border-2 border-slate-100 focus:border-blue-500 focus:bg-white outline-none transition-all text-lg" rows="4" placeholder="اكتب هدفاً ذكياً (محدد، قابل للقياس، محدد بزمن)..."></textarea>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Step 3: Gap -->
+                    <!-- Step 3 -->
                     <div class="step-content" data-step="3">
-                        <div class="flex items-center gap-4 mb-6">
-                            <span class="bg-amber-100 text-amber-600 w-10 h-10 flex items-center justify-center rounded-full font-bold">3</span>
-                            <h3 class="text-2xl font-bold text-slate-800">تحليل الفجوة</h3>
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-black text-slate-900 mb-2">03. تحليل الفجوات</h3>
+                            <p class="text-slate-500">ما الذي يمنعك من الوصول لهدفك الآن؟</p>
                         </div>
                         <div class="space-y-6">
                             <div>
-                                <label class="block text-slate-700 font-bold mb-2">ما هي المهارات أو المعارف التي تنقصك للوصول لهدفك؟</label>
-                                <textarea name="gaps" class="w-full p-4 rounded-xl border-2 border-slate-100 focus:border-amber-500 outline-none transition-all" rows="4" placeholder="مثال: اللغة الإنجليزية المستوى المتقدم، مهارات التفاوض، التعامل مع الذكاء الاصطناعي"></textarea>
+                                <label class="block text-slate-800 font-bold mb-3">ما هي المهارات التي "يجب" أن تتعلمها؟</label>
+                                <textarea name="gaps" class="w-full p-4 rounded-2xl bg-slate-50 border-2 border-slate-100 focus:border-blue-500 focus:bg-white outline-none transition-all text-lg" rows="4" placeholder="مثال: إتقان الذكاء الاصطناعي، التحدث أمام الجمهور..."></textarea>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Step 4: Actions -->
+                    <!-- Step 4 -->
                     <div class="step-content" data-step="4">
-                        <div class="flex items-center gap-4 mb-6">
-                            <span class="bg-emerald-100 text-emerald-600 w-10 h-10 flex items-center justify-center rounded-full font-bold">4</span>
-                            <h3 class="text-2xl font-bold text-slate-800">خطة العمل</h3>
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-black text-slate-900 mb-2">04. خطة التفيذ</h3>
+                            <p class="text-slate-500">الآن نضع الأقدام على الطريق.</p>
                         </div>
-                        <div class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-slate-700 font-bold mb-2">اختر الأسلوب التطويري المفضل لديك:</label>
-                                <select name="learning_style" class="w-full p-4 rounded-xl border-2 border-slate-100 focus:border-emerald-500 outline-none transition-all">
-                                    <option value="تطبيق عملي (Learning by doing)">تطبيق عملي (مشاريع حقيقية)</option>
-                                    <option value="دورات تدريبية مكثفة">دورات تدريبية (نظري + عملي)</option>
-                                    <option value="التوجيه والكوتشينج (Mentoring)">التوجيه والكوتشينج</option>
+                                <label class="block text-slate-800 font-bold mb-3">أفضل طريقة تعلم لك؟</label>
+                                <select name="learning_style" class="w-full p-4 rounded-2xl bg-slate-50 border-2 border-slate-100 focus:border-blue-500 outline-none transition-all appearance-none">
+                                    <option value="التعلم بالممارسة الفورية">التعلم بالممارسة الفورية</option>
+                                    <option value="الدورات التدريبية المعتمدة">الدورات التدريبية المعتمدة</option>
+                                    <option value="التوجيه (Coaching/Mentoring)">التوجيه والكوتشينج</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-slate-700 font-bold mb-2">ما هو أول إجراء ستتخذه غداً؟</label>
-                                <input type="text" name="first_action" class="w-full p-4 rounded-xl border-2 border-slate-100 focus:border-emerald-500 outline-none transition-all" placeholder="مثال: التسجيل في منصة كورسيرا">
+                                <label class="block text-slate-800 font-bold mb-3">أول خطوة ستقوم بها غداً؟</label>
+                                <input type="text" name="first_action" class="w-full p-4 rounded-2xl bg-slate-50 border-2 border-slate-100 focus:border-blue-500 outline-none transition-all" placeholder="مثال: حجز موعد مع كوتش">
                             </div>
                         </div>
                     </div>
 
-                    <!-- Step 5: Support -->
+                    <!-- Step 5 -->
                     <div class="step-content" data-step="5">
-                        <div class="flex items-center gap-4 mb-6">
-                            <span class="bg-purple-100 text-purple-600 w-10 h-10 flex items-center justify-center rounded-full font-bold">5</span>
-                            <h3 class="text-2xl font-bold text-slate-800">الدعم والموارد</h3>
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-black text-slate-900 mb-2">05. الدعم والمساندة</h3>
                         </div>
                         <div class="space-y-6">
-                            <div>
-                                <label class="block text-slate-700 font-bold mb-2">من هو الشخص الذي يمكن أن يدعمك في رحلتك؟</label>
-                                <input type="text" name="supporter" class="w-full p-4 rounded-xl border-2 border-slate-100 focus:border-purple-500 outline-none transition-all" placeholder="مثال: مديري المباشر، صديق ملهم، كوتش متخصص">
-                            </div>
+                            <label class="block text-slate-800 font-bold mb-3">من هم الأشخاص الذين سيشجعونك؟</label>
+                            <input type="text" name="supporter" class="w-full p-4 rounded-2xl bg-slate-50 border-2 border-slate-100 focus:border-blue-500 outline-none transition-all text-lg" placeholder="اكتب أسماء أو صفات (المدير، العائلة، كوتش محمد...)">
                         </div>
                     </div>
 
-                    <!-- Step 6: Review -->
+                    <!-- Step 6 -->
                     <div class="step-content" data-step="6">
-                        <div class="flex items-center gap-4 mb-6">
-                            <span class="bg-rose-100 text-rose-600 w-10 h-10 flex items-center justify-center rounded-full font-bold">6</span>
-                            <h3 class="text-2xl font-bold text-slate-800">تعهد الالتزام</h3>
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-black text-slate-900 mb-2 text-rose-600">06. المصادقة</h3>
                         </div>
-                        <div class="bg-rose-50 p-6 rounded-2xl border border-rose-100 mb-6">
-                            <p class="text-rose-800 italic leading-relaxed">
-                                "أنا أتعهد أمام نفسي بأن ألتزم بتنفيذ هذه الخطة والسعي المستمر نحو تطوير مهاراتي لتحقيق أهدافي المهنية."
-                            </p>
+                        <div class="bg-rose-50 p-6 rounded-3xl mb-8 border border-rose-100">
+                            <p class="text-rose-900 font-medium italic">"أنا ألتزم ببذل أقصى جهدي لتحويل هذه الخطة إلى واقع ملموس، فالتطوير يبدأ بقرار اليوم."</p>
                         </div>
-                        <div>
-                            <label class="block text-slate-700 font-bold mb-2">اكتب اسمك للمصادقة على الخطة:</label>
-                            <input type="text" name="user_name" id="user_name" class="w-full p-4 rounded-xl border-2 border-slate-100 focus:border-rose-500 outline-none transition-all" placeholder="الاسم الكامل">
-                        </div>
+                        <label class="block text-slate-800 font-bold mb-3">اكتب اسمك للمصادقة على الخطة:</label>
+                        <input type="text" name="user_name" id="user_name" class="w-full p-4 rounded-2xl border-4 border-slate-100 focus:border-rose-500 outline-none transition-all text-xl font-bold" placeholder="الاسم الكامل">
                     </div>
 
-                    <!-- Navigation Buttons -->
-                    <div class="mt-10 flex justify-between gap-4 no-print">
-                        <button type="button" id="prevBtn" onclick="changeStep(-1)" class="hidden px-8 py-3 rounded-xl font-bold text-slate-500 hover:bg-slate-100 transition-all">السابق</button>
-                        <button type="button" id="nextBtn" onclick="changeStep(1)" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-bold mr-auto transition-all shadow-md">التالي</button>
+                    <!-- Nav -->
+                    <div class="mt-12 flex justify-between gap-4 no-print">
+                        <button type="button" id="prevBtn" onclick="changeStep(-1)" class="hidden px-10 py-4 rounded-2xl font-bold text-slate-400 hover:text-slate-800 hover:bg-slate-100 transition-all">السابق</button>
+                        <button type="button" id="nextBtn" onclick="changeStep(1)" class="bg-blue-600 hover:bg-blue-700 text-white px-12 py-4 rounded-2xl font-bold mr-auto transition-all shadow-xl flex items-center gap-2">
+                            <span>التالي</span> <i class="fas fa-chevron-left text-xs"></i>
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
 
-        <!-- Result Screen (IDP Summary) -->
+        <!-- Result Screen -->
         <div id="result-screen" class="hidden">
-            <div class="bg-white p-8 md:p-12 rounded-[2rem] shadow-2xl border-t-8 border-blue-600">
-                <div class="flex flex-col md:flex-row justify-between items-start mb-10 gap-6 border-b pb-8">
+            <div class="print-area bg-white p-8 md:p-14 rounded-[3rem] shadow-2xl border-t-[12px] border-blue-600 relative overflow-hidden">
+                <!-- Branding BG -->
+                <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-blue-50 to-transparent -z-0"></div>
+                
+                <div class="relative z-10 flex flex-col md:flex-row justify-between items-start mb-12 border-b pb-8 border-slate-100 gap-8">
                     <div>
-                        <h2 class="text-3xl font-black text-slate-900 mb-2">خطة التطوير الفردية الشخصية</h2>
-                        <p class="text-blue-600 font-bold">تم تصميمها بإشراف: الكوتش محمد علي عسيري</p>
-                    </div>
-                    <div class="bg-slate-50 p-4 rounded-2xl text-center min-w-[150px]">
-                        <p class="text-xs text-slate-500 mb-1">تاريخ الخطة</p>
-                        <p id="current-date" class="font-bold text-slate-800"></p>
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="space-y-6">
-                        <div class="bg-blue-50 p-5 rounded-2xl">
-                            <h4 class="font-bold text-blue-900 mb-2 flex items-center gap-2"><i class="fas fa-user"></i> البيانات الشخصية</h4>
-                            <p id="res-name" class="text-slate-700 font-medium"></p>
-                            <p id="res-role" class="text-slate-500 text-sm"></p>
-                        </div>
-                        <div class="bg-indigo-50 p-5 rounded-2xl">
-                            <h4 class="font-bold text-indigo-900 mb-2 flex items-center gap-2"><i class="fas fa-star"></i> نقاط القوة الحالية</h4>
-                            <p id="res-strengths" class="text-slate-700 whitespace-pre-wrap"></p>
-                        </div>
-                        <div class="bg-amber-50 p-5 rounded-2xl">
-                            <h4 class="font-bold text-amber-900 mb-2 flex items-center gap-2"><i class="fas fa-triangle-exclamation"></i> فجوات التطوير</h4>
-                            <p id="res-gaps" class="text-slate-700 whitespace-pre-wrap"></p>
+                        <h2 class="text-4xl font-black text-slate-900 mb-2">خطة التطوير الفردية</h2>
+                        <div class="flex items-center gap-3 text-blue-600 font-bold text-lg">
+                            <i class="fas fa-check-double"></i>
+                            <span>بإشراف الكوتش محمد علي عسيري</span>
                         </div>
                     </div>
-                    <div class="space-y-6">
-                        <div class="bg-emerald-50 p-5 rounded-2xl border-r-4 border-emerald-500">
-                            <h4 class="font-bold text-emerald-900 mb-2 flex items-center gap-2"><i class="fas fa-flag"></i> الهدف الرئيسي</h4>
-                            <p id="res-goal" class="text-slate-700"></p>
-                        </div>
-                        <div class="bg-purple-50 p-5 rounded-2xl">
-                            <h4 class="font-bold text-purple-900 mb-2 flex items-center gap-2"><i class="fas fa-person-running"></i> الخطوة القادمة فوراً</h4>
-                            <p id="res-action" class="text-slate-700"></p>
-                        </div>
-                        <div class="bg-slate-50 p-5 rounded-2xl border-2 border-dashed border-slate-200">
-                            <h4 class="font-bold text-slate-900 mb-2 flex items-center gap-2"><i class="fas fa-handshake-angle"></i> شبكة الدعم</h4>
-                            <p id="res-support" class="text-slate-700"></p>
-                        </div>
+                    <div class="bg-slate-900 text-white p-4 rounded-3xl text-center min-w-[160px] shadow-lg">
+                        <span class="text-[10px] uppercase opacity-60 block mb-1">تاريخ الإصدار</span>
+                        <span id="current-date" class="font-mono text-sm"></span>
                     </div>
                 </div>
 
-                <div class="mt-12 pt-8 border-t flex flex-col items-center no-print">
-                    <p class="text-slate-500 text-sm mb-6 text-center">أحسنت! لقد وضعت أولى خطواتك نحو النجاح الاحترافي.</p>
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div class="space-y-8">
+                        <section>
+                            <h4 class="text-xs font-black text-blue-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                <span class="w-6 h-1 bg-blue-500 rounded-full"></span> صاحب الخطة
+                            </h4>
+                            <p id="res-name" class="text-2xl font-black text-slate-800"></p>
+                            <p id="res-role" class="text-slate-500 font-medium"></p>
+                        </section>
+
+                        <section class="bg-slate-50 p-6 rounded-[2rem] border border-slate-100">
+                            <h4 class="font-black text-slate-900 mb-3 flex items-center gap-2"><i class="fas fa-gem text-blue-500"></i> الرصيد الحالي (نقاط القوة)</h4>
+                            <p id="res-strengths" class="text-slate-600 leading-relaxed whitespace-pre-wrap font-medium"></p>
+                        </section>
+                    </div>
+
+                    <div class="space-y-8">
+                        <section class="bg-blue-600 text-white p-7 rounded-[2rem] shadow-xl transform rotate-1">
+                            <h4 class="font-black mb-3 flex items-center gap-2"><i class="fas fa-flag-checkered"></i> الهدف الاستراتيجي</h4>
+                            <p id="res-goal" class="leading-relaxed font-bold text-blue-50"></p>
+                        </section>
+
+                        <section class="border-2 border-dashed border-slate-200 p-6 rounded-[2rem]">
+                            <h4 class="font-black text-slate-900 mb-3 flex items-center gap-2"><i class="fas fa-bolt text-amber-500"></i> الخطوة العاجلة</h4>
+                            <p id="res-action" class="text-slate-600 font-bold italic"></p>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="mt-12 bg-slate-900 rounded-[2.5rem] p-8 text-white flex flex-col md:flex-row items-center justify-between gap-6 no-print">
+                    <div class="text-center md:text-right">
+                        <p class="text-xl font-bold mb-1">تهانينا على هذه الخطوة!</p>
+                        <p class="text-slate-400 text-sm">بإمكانك الآن طباعة الخطة والبدء فوراً.</p>
+                    </div>
                     <div class="flex gap-4">
-                        <button onclick="window.print()" class="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-slate-800 transition-all flex items-center gap-2">
-                            <i class="fas fa-print"></i> طباعة الخطة
+                        <button onclick="window.print()" class="bg-white text-slate-900 px-8 py-4 rounded-2xl font-bold hover:bg-blue-50 transition-all flex items-center gap-2 shadow-lg">
+                            <i class="fas fa-print"></i> طباعة PDF
                         </button>
-                        <button onclick="location.reload()" class="border-2 border-slate-200 text-slate-600 px-8 py-3 rounded-xl font-bold hover:bg-slate-50 transition-all">
-                            إنشاء خطة جديدة
+                        <button onclick="location.reload()" class="bg-slate-800 text-slate-300 px-8 py-4 rounded-2xl font-bold hover:text-white transition-all">
+                            خطة جديدة
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Social Card Footer (Small Branding on Result) -->
-            <div class="mt-8 text-center no-print">
-                <div class="inline-flex items-center gap-4 bg-white px-6 py-3 rounded-full shadow-sm">
-                    <span class="text-slate-600 text-sm">بمشاركة الكوتش محمد عسيري</span>
-                    <a href="https://x.com/mohdasiri99" target="_blank" class="text-blue-500 hover:scale-110 transition-transform">
-                        <i class="fab fa-x-twitter text-xl"></i>
-                    </a>
-                </div>
+            <!-- Footer for result -->
+            <div class="mt-10 text-center no-print">
+                <a href="https://x.com/mohdasiri99" target="_blank" class="inline-flex items-center gap-3 bg-white px-8 py-4 rounded-full shadow-md hover:shadow-xl transition-all border border-blue-50 group">
+                    <span class="text-slate-700 font-bold group-hover:text-blue-600">للاستشارات: الكوتش محمد عسيري</span>
+                    <i class="fab fa-x-twitter text-xl text-blue-500 group-hover:scale-125 transition-transform"></i>
+                </a>
             </div>
         </div>
 
     </main>
 
-    <footer class="py-8 text-center text-slate-400 text-xs no-print">
-        <p>تصميم وتطوير تفاعلي خاص بالكوتش محمد علي عسيري</p>
+    <footer class="py-10 text-center text-slate-400 text-xs no-print">
+        <div class="max-w-xs mx-auto h-px bg-slate-200 mb-6"></div>
+        <p class="font-medium tracking-widest uppercase">IDP Interactive Blueprint &copy; 2024</p>
     </footer>
 
     <script>
@@ -278,24 +283,24 @@
         const totalSteps = 6;
 
         function startWizard() {
-            document.getElementById('welcome-screen').classList.add('hidden');
+            document.getElementById('welcome-screen').style.display = 'none';
             document.getElementById('wizard-container').classList.remove('hidden');
-            updateProgress();
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
         function changeStep(n) {
             const steps = document.querySelectorAll('.step-content');
             
-            // Validation before next
+            // Validation
             if (n === 1) {
-                const activeStepFields = steps[currentStep - 1].querySelectorAll('input, textarea');
+                const inputs = steps[currentStep - 1].querySelectorAll('input, textarea');
                 let valid = true;
-                activeStepFields.forEach(field => {
-                    if (!field.value.trim() && field.name === 'user_name') {
-                        field.classList.add('border-rose-500');
+                inputs.forEach(i => {
+                    if (i.required && !i.value.trim()) {
+                        i.classList.add('border-rose-500');
                         valid = false;
                     } else {
-                        field.classList.remove('border-rose-500');
+                        i.classList.remove('border-rose-500');
                     }
                 });
                 if (!valid) return;
@@ -310,36 +315,37 @@
             }
 
             steps[currentStep - 1].classList.add('active');
-            updateProgress();
-            
-            // Toggle buttons visibility
-            document.getElementById('prevBtn').classList.toggle('hidden', currentStep === 1);
-            document.getElementById('nextBtn').innerText = currentStep === totalSteps ? 'عرض خطتي النهائية' : 'التالي';
+            updateUI();
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        function updateProgress() {
+        function updateUI() {
             const percent = Math.round((currentStep / totalSteps) * 100);
             document.getElementById('progress-bar').style.width = percent + '%';
             document.getElementById('progress-text').innerText = `الخطوة ${currentStep} من ${totalSteps}`;
             document.getElementById('progress-percent').innerText = percent + '%';
+            
+            document.getElementById('prevBtn').classList.toggle('hidden', currentStep === 1);
+            document.getElementById('nextBtn').innerHTML = currentStep === totalSteps ? 
+                'إصدار الخطة النهائية <i class="fas fa-check-circle"></i>' : 
+                'التالي <i class="fas fa-chevron-left text-xs"></i>';
         }
 
         function showResults() {
             document.getElementById('wizard-container').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
             
-            const formData = new FormData(document.getElementById('idpForm'));
+            const fd = new FormData(document.getElementById('idpForm'));
             
-            document.getElementById('res-name').innerText = formData.get('user_name') || 'صاحب الطموح';
-            document.getElementById('res-role').innerText = formData.get('current_role') || 'لم يحدد';
-            document.getElementById('res-strengths').innerText = formData.get('strengths') || 'بانتظار التحديد';
-            document.getElementById('res-gaps').innerText = formData.get('gaps') || 'بانتظار التحديد';
-            document.getElementById('res-goal').innerText = formData.get('goal_short') || 'لم يحدد بعد';
-            document.getElementById('res-action').innerText = formData.get('first_action') || 'لم يحدد بعد';
-            document.getElementById('res-support').innerText = formData.get('supporter') || 'غير محدد';
+            document.getElementById('res-name').innerText = fd.get('user_name') || 'صاحب الطموح';
+            document.getElementById('res-role').innerText = fd.get('current_role') || 'عضو مميز';
+            document.getElementById('res-strengths').innerText = fd.get('strengths') || 'لم تُحدد بعد';
+            document.getElementById('res-goal').innerText = fd.get('goal_short') || 'السعي نحو التميز المهني';
+            document.getElementById('res-action').innerText = fd.get('first_action') || 'البدء غداً';
             
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('current-date').innerText = new Date().toLocaleDateString('ar-SA', options);
+            const now = new Date();
+            document.getElementById('current-date').innerText = now.toLocaleDateString('ar-SA', {year:'numeric', month:'long', day:'numeric'});
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
     </script>
 </body>
